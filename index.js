@@ -50,7 +50,7 @@ async function main() {
 	default:
 		core.setFailed( 'Unsupported event name: ' + eventName );
 	}
-	const response = await octokit.repos.compareCommits({
+	const response = await octokit.rest.repos.compareCommits({
 		base,
 		head,
 		owner: context.repo.owner,
