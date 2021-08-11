@@ -1,0 +1,25 @@
+# Workflow name:
+name: Test GitHub Action
+
+# Workflow triggers:
+on:
+  push:
+
+# Workflow jobs:
+jobs:
+  test:
+    # Define the type of virtual host machine on which to run the job:
+    runs-on: ubuntu-latest
+
+    # Define the sequence of job steps...
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: |
+          npm install
+      - id: changed-packages
+        uses: ./
+      - name: Log output of the previous step
+        run: |
+          echo "This is the output of the previous step:"   
+          echo ${{ steps.changed-packages.outputs.packages }}

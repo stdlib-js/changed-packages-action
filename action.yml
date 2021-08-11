@@ -1,0 +1,15 @@
+name: Changed Packages Action
+description: Return the list of changed stdlib packages in a push or pull request.
+author: Philipp Burckhardt <pburckhardt@outlook.com>
+
+runs:
+  using: node15
+  main: index.js
+
+outputs:
+  packages:
+    description: "Array of changed packages in a push or pull request"
+
+branding:
+  icon: box
+  color: green
