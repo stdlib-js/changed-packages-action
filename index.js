@@ -106,8 +106,9 @@ async function main() {
 	for ( let i = 0; i < files.length; i++ ) {
 		const { filename } = files[ i ];
 		if ( contains( filename, '@stdlib' ) ) {
-			const pkg = dirname( filename );
-			packages.push( pkg.substring( pkg.indexOf( '@stdlib' ) + 1 ) );
+			let pkg = dirname( filename );
+			pkg = pkg.substring( pkg.indexOf( '@stdlib' ) + 7 );
+			packages.push( pkg );
 			const standalone = prunePackage( pkg, 0 );
 			packages.push( standalone );
 		}
