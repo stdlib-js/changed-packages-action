@@ -64,34 +64,34 @@ const RE_TEST = /\/test($|\/)/i;
 */
 function stripOffInternals( pkg ) {
 		if ( RE_BENCHMARK.test( pkg ) ) {
-			pkg = pkg.substring( 0, pkg.indexOf( '/benchmark' ) + 1 );
+			pkg = pkg.substring( 0, pkg.indexOf( '/benchmark' ) );
 		}
 		else if ( RE_BIN.test( pkg ) ) {
-			pkg = pkg.substring( 0, pkg.indexOf( '/bin' ) + 1 );
+			pkg = pkg.substring( 0, pkg.indexOf( '/bin' ) );
 		}
 		else if ( RE_DATA.test( pkg ) ) {
-			pkg = pkg.substring( 0, pkg.indexOf( '/data' ) + 1 );
+			pkg = pkg.substring( 0, pkg.indexOf( '/data' ) );
 		}
 		else if ( RE_DOCS.test( pkg ) ) {
-			pkg = pkg.substring( 0, pkg.indexOf( '/docs' ) + 1 );
+			pkg = pkg.substring( 0, pkg.indexOf( '/docs' ) );
 		}
 		else if ( RE_ETC.test( pkg ) ) {
-			pkg = pkg.substring( 0, pkg.indexOf( '/etc' ) + 1 );
+			pkg = pkg.substring( 0, pkg.indexOf( '/etc' ) );
 		}
 		else if ( RE_EXAMPLES.test( pkg ) ) {
-			pkg = pkg.substring( 0, pkg.indexOf( '/examples' ) + 1 );
+			pkg = pkg.substring( 0, pkg.indexOf( '/examples' ) );
 		}
 		else if ( RE_LIB.test( pkg ) ) {
-			pkg = pkg.substring( 0, pkg.indexOf( '/lib' ) + 1 );
+			pkg = pkg.substring( 0, pkg.indexOf( '/lib' ) );
 		}
 		else if ( RE_INCLUDE.test( pkg ) ) {
-			pkg = pkg.substring( 0, pkg.indexOf( '/include' ) + 1 );
+			pkg = pkg.substring( 0, pkg.indexOf( '/include' ) );
 		}
 		else if ( RE_SRC.test( pkg ) ) {
-			pkg = pkg.substring( 0, pkg.indexOf( '/src' ) + 1 );
+			pkg = pkg.substring( 0, pkg.indexOf( '/src' ) );
 		}
 		else if ( RE_TEST.test( pkg ) ) {
-			pkg = pkg.substring( 0, pkg.indexOf( '/test' ) + 1 );
+			pkg = pkg.substring( 0, pkg.indexOf( '/test' ) );
 		}
 		return pkg;
 }
