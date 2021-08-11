@@ -56,6 +56,7 @@ async function main() {
 		owner: context.repo.owner,
 		repo: context.repo.repo
 	});
+	core.info( JSON.stringify(response, null, '\t' ) );
 	const files = response.data.files;
 	core.info( 'Files changed:' );
 	for ( const file of files ) {
