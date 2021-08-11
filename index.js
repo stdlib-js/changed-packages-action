@@ -18,6 +18,7 @@
 
 // MODULES //
 
+const { dirname } = require( 'path' );
 const core = require( '@actions/core' );
 const github = require( '@actions/github' );
 
@@ -102,7 +103,11 @@ async function main() {
 	const files = response.data.files;
 	const packages = [];
 	for ( let i = 0; i < files.length; i++ ) {
-		packages.push( files[ i ] );
+		const { filename } = files[ i ];
+		const pkg = dirname( filename );
+		packages.push( pkg );
+		const standalone = prunePackage( pkg, 0 );
+		packages.push( standalone );
 	}
 	core.setOutput( 'packages', packages );
 }
