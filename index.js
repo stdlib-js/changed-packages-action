@@ -22,6 +22,48 @@ const core = require( '@actions/core' );
 const github = require( '@actions/github' );
 
 
+// FUNCTIONS //
+
+/**
+* Returns the n-th index of the given search value in a string.
+*
+* @private
+* @param {string} str - input string
+* @param {string} searchValue - value to search for
+* @param {number} n - index of which match to return
+* @returns {number} n-th index
+*/
+function nthIndex( str, searchValue, n ) {
+	var len = str.length;
+	var i = -1;
+	while ( n > 0 && i < len ) {
+		i += 1;
+		i = str.indexOf( searchValue, i );
+		if ( i < 0 ) {
+			break;
+		}
+		n -= 1;
+	}
+	return i;
+}
+
+/**
+* Prunes a package name to an ancestor at the chosen level of the tree.
+*
+* @private
+* @param {string} pkg - package tree path
+* @param {number} level - desired dependency level
+* @returns {string} ancestor package
+*/
+function prunePackage( pkg, level ) {
+	var idx = nthIndex( pkg, '/', level + 1 );
+	if ( idx === -1 ) {
+		return pkg;
+	}
+	return pkg.substring( 0, idx );
+}
+
+
 // MAIN //
 
 /**
@@ -56,13 +98,13 @@ async function main() {
 		owner: context.repo.owner,
 		repo: context.repo.repo
 	});
-	core.info( JSON.stringify(response, null, '\t' ) );
+	core.info( JSON.stringify( response.data.files, null, '\t' ) );
 	const files = response.data.files;
-	core.info( 'Files changed:' );
-	for ( const file of files ) {
-		core.info( '\t', file.filename );
+	const packages = [];
+	for ( let i = 0; i < files.length; i++ ) {
+		packages.push( files[ i ] );
 	}
-	core.setOutput( 'packages', [] );
+	core.setOutput( 'packages', packages );
 }
 
 main();
