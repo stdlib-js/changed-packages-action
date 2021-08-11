@@ -19,7 +19,7 @@
 // MODULES //
 
 const core = require( '@actions/core' );
-const github, { context } = require( '@actions/github' );
+const github = require( '@actions/github' );
 
 
 // MAIN //
@@ -31,6 +31,7 @@ async function main() {
 	const token = core.getInput( 'GITHUB_TOKEN', { 
 		required: true 
 	});
+	const context = github.context;
 	const octokit = github.getOctokit( token );
 	let base, head;
 	switch ( context.eventName ) {
