@@ -21,6 +21,7 @@
 const { dirname } = require( 'path' );
 const core = require( '@actions/core' );
 const github = require( '@actions/github' );
+const contains = require( '@stdlib/assert/contains' );
 
 
 // FUNCTIONS //
@@ -104,10 +105,12 @@ async function main() {
 	const packages = [];
 	for ( let i = 0; i < files.length; i++ ) {
 		const { filename } = files[ i ];
-		const pkg = dirname( filename );
-		packages.push( pkg );
-		const standalone = prunePackage( pkg, 0 );
-		packages.push( standalone );
+		if ( contains( filename, '@stdlib' ) ) {
+			const pkg = dirname( filename );
+			packages.push( pkg );
+			const standalone = prunePackage( pkg, 0 );
+			packages.push( standalone );
+		}
 	}
 	core.setOutput( 'packages', packages );
 }
