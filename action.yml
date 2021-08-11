@@ -3,7 +3,7 @@ description: Return the list of changed stdlib packages in a push or pull reques
 author: Philipp Burckhardt <pburckhardt@outlook.com>
 
 runs:
-  using: node15
+  using: node12
   main: index.js
 
 outputs:
