@@ -38,10 +38,14 @@ async function main() {
 		base = context.payload.before;
 		head = context.payload.after;
 		break;
-	case 'pull_request':
-		base = context.payload.pull_request?.base?.sha;
-		head = context.payload.pull_request?.head?.sha;
+	case 'pull_request': {
+		let pullRequest = context.payload.pull_request;
+		if ( pullRequest ) {
+			base = pullRequest.base.sha;
+			head = pullRequest.head.sha;
+		}
 		break;
+	}
 	default:
 		core.setFailed( 'Unsupported event name: ' + eventName );
 	}
