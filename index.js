@@ -24,6 +24,20 @@ const github = require( '@actions/github' );
 const contains = require( '@stdlib/assert-contains' );
 
 
+// VARIABLES //
+
+const RE_BENCHMARK = /\/benchmark($|\/)/i;
+const RE_BIN = /\/bin($|\/)/i;
+const RE_DATA = /\/data($|\/)/i;
+const RE_DOCS = /\/docs($|\/)/i;
+const RE_ETC = /\/etc($|\/)/i;
+const RE_EXAMPLES = /\/examples($|\/)/i;
+const RE_LIB = /\/lib($|\/)/i;
+const RE_INCLUDE = /\/include($|\/)/i;
+const RE_SRC = /\/src($|\/)/i;
+const RE_TEST = /\/test($|\/)/i;
+
+
 // FUNCTIONS //
 
 /**
@@ -49,35 +63,35 @@ const contains = require( '@stdlib/assert-contains' );
 * @returns {string} package name
 */
 function stripOffInternals( pkg ) {
-		if ( contains( pkg, '/benchmark/' ) ) {
-			pkg = pkg.substring( 0, pkg.indexOf( 'benchmark/' ) );
+		if ( RE_BENCHMARK.test( pkg ) ) {
+			pkg = pkg.substring( 0, pkg.indexOf( '/benchmark' ) + 1 );
 		}
-		else if ( contains( pkg, '/bin/' ) ) {
-			pkg = pkg.substring( 0, pkg.indexOf( 'bin/' ) );
+		else if ( RE_BIN.test( pkg ) ) {
+			pkg = pkg.substring( 0, pkg.indexOf( '/bin' ) + 1 );
 		}
-		else if ( contains( pkg, '/data/' ) ) {
-			pkg = pkg.substring( 0, pkg.indexOf( 'data/' ) );
+		else if ( RE_DATA.test( pkg ) ) {
+			pkg = pkg.substring( 0, pkg.indexOf( '/data' ) + 1 );
 		}
-		else if ( contains( pkg, '/docs/' ) ) {
-			pkg = pkg.substring( 0, pkg.indexOf( 'docs/' ) );
+		else if ( RE_DOCS.test( pkg ) ) {
+			pkg = pkg.substring( 0, pkg.indexOf( '/docs' ) + 1 );
 		}
-		else if ( contains( pkg, '/etc/' ) ) {
-			pkg = pkg.substring( 0, pkg.indexOf( 'etc/' ) );
+		else if ( RE_ETC.test( pkg ) ) {
+			pkg = pkg.substring( 0, pkg.indexOf( '/etc' ) + 1 );
 		}
-		else if ( contains( pkg, '/examples/' ) ) {
-			pkg = pkg.substring( 0, pkg.indexOf( 'examples/' ) );
+		else if ( RE_EXAMPLES.test( pkg ) ) {
+			pkg = pkg.substring( 0, pkg.indexOf( '/examples' ) + 1 );
 		}
-		else if ( contains( pkg, '/lib/' ) ) {
-			pkg = pkg.substring( 0, pkg.indexOf( 'lib/' ) );
+		else if ( RE_LIB.test( pkg ) ) {
+			pkg = pkg.substring( 0, pkg.indexOf( '/lib' ) + 1 );
 		}
-		else if ( contains( pkg, '/include/' ) ) {
-			pkg = pkg.substring( 0, pkg.indexOf( 'include/' ) );
+		else if ( RE_INCLUDE.test( pkg ) ) {
+			pkg = pkg.substring( 0, pkg.indexOf( '/include' ) + 1 );
 		}
-		else if ( contains( pkg, '/src/' ) ) {
-			pkg = pkg.substring( 0, pkg.indexOf( 'src/' ) );
+		else if ( RE_SRC.test( pkg ) ) {
+			pkg = pkg.substring( 0, pkg.indexOf( '/src' ) + 1 );
 		}
-		else if ( contains( pkg, '/test/' ) ) {
-			pkg = pkg.substring( 0, pkg.indexOf( 'test/' ) );
+		else if ( RE_TEST.test( pkg ) ) {
+			pkg = pkg.substring( 0, pkg.indexOf( '/test' ) + 1 );
 		}
 		return pkg;
 }
