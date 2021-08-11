@@ -1,6 +1,6 @@
 {
     "name": "changed-packages-action",
-    "version": "1.0.1",
+    "version": "1.0.0",
     "description": "A GitHub action to return the list of changed stdlib packages in a push or pull request.",
     "main": "index.js",
     "scripts": {},
