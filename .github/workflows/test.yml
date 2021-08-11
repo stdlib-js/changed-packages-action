@@ -19,6 +19,8 @@ jobs:
           npm install
       - id: changed-packages
         uses: ./
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Log output of the previous step
         run: |
           echo "This is the output of the previous step:"   
