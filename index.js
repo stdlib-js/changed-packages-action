@@ -27,6 +27,62 @@ const contains = require( '@stdlib/assert-contains' );
 // FUNCTIONS //
 
 /**
+* Strips off internal directory paths from a package path.
+*
+* ## Notes
+*
+* -   The function strips off the following directory names:
+*
+*     -   `benchmark`
+*     -   `bin`
+*     -   `data`
+*     -   `docs`
+*     -   `etc`
+*     -   `examples`
+*     -   `lib`
+*     -   `include`
+*     -   `src`
+*     -   `test`
+* 
+* @private
+* @param {string} pkg - package tree path
+* @returns {string} package name
+*/
+function stripOffInternals( pkg ) {
+		if ( contains( pkg, 'benchmark/' ) ) {
+			pkg = pkg.substring( 0, pkg.indexOf( 'benchmark/' ) );
+		}
+		else if ( contains( pkg, 'bin/' ) ) {
+			pkg = pkg.substring( 0, pkg.indexOf( 'bin/' ) );
+		}
+		else if ( contains( pkg, 'data/' ) ) {
+			pkg = pkg.substring( 0, pkg.indexOf( 'data/' ) );
+		}
+		else if ( contains( pkg, 'docs/' ) ) {
+			pkg = pkg.substring( 0, pkg.indexOf( 'docs/' ) );
+		}
+		else if ( contains( pkg, 'etc/' ) ) {
+			pkg = pkg.substring( 0, pkg.indexOf( 'etc/' ) );
+		}
+		else if ( contains( pkg, 'examples/' ) ) {
+			pkg = pkg.substring( 0, pkg.indexOf( 'examples/' ) );
+		}
+		else if ( contains( pkg, 'lib/' ) ) {
+			pkg = pkg.substring( 0, pkg.indexOf( 'lib/' ) );
+		}
+		else if ( contains( pkg, 'include/' ) ) {
+			pkg = pkg.substring( 0, pkg.indexOf( 'include/' ) );
+		}
+		else if ( contains( pkg, 'src/' ) ) {
+			pkg = pkg.substring( 0, pkg.indexOf( 'src/' ) );
+		}
+		else if ( contains( pkg, 'test/' ) ) {
+			pkg = pkg.substring( 0, pkg.indexOf( 'test/' ) );
+		}
+		return pkg;
+}
+
+/**
 * Returns the n-th index of the given search value in a string.
 *
 * @private
@@ -107,6 +163,7 @@ async function main() {
 		const { filename } = files[ i ];
 		if ( contains( filename, '@stdlib' ) ) {
 			let pkg = dirname( filename );
+			pkg = stripOffInternals( pkg );
 			pkg = pkg.substring( pkg.indexOf( '@stdlib' ) + 8 );
 			if ( !contains( packages, pkg ) ) {
 				packages.push( pkg );
