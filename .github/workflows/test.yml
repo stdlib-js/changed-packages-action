@@ -24,4 +24,4 @@ jobs:
       - name: Log output of the previous step
         run: |
           echo "This is the output of the previous step:"   
-          echo ${{ steps.changed-packages.outputs.packages }}
+          echo ${{ join( steps.changed-packages.outputs.packages, ' ' ) }}

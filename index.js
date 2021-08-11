@@ -49,34 +49,34 @@ const contains = require( '@stdlib/assert-contains' );
 * @returns {string} package name
 */
 function stripOffInternals( pkg ) {
-		if ( contains( pkg, 'benchmark/' ) ) {
+		if ( contains( pkg, '/benchmark/' ) ) {
 			pkg = pkg.substring( 0, pkg.indexOf( 'benchmark/' ) );
 		}
-		else if ( contains( pkg, 'bin/' ) ) {
+		else if ( contains( pkg, '/bin/' ) ) {
 			pkg = pkg.substring( 0, pkg.indexOf( 'bin/' ) );
 		}
-		else if ( contains( pkg, 'data/' ) ) {
+		else if ( contains( pkg, '/data/' ) ) {
 			pkg = pkg.substring( 0, pkg.indexOf( 'data/' ) );
 		}
-		else if ( contains( pkg, 'docs/' ) ) {
+		else if ( contains( pkg, '/docs/' ) ) {
 			pkg = pkg.substring( 0, pkg.indexOf( 'docs/' ) );
 		}
-		else if ( contains( pkg, 'etc/' ) ) {
+		else if ( contains( pkg, '/etc/' ) ) {
 			pkg = pkg.substring( 0, pkg.indexOf( 'etc/' ) );
 		}
-		else if ( contains( pkg, 'examples/' ) ) {
+		else if ( contains( pkg, '/examples/' ) ) {
 			pkg = pkg.substring( 0, pkg.indexOf( 'examples/' ) );
 		}
-		else if ( contains( pkg, 'lib/' ) ) {
+		else if ( contains( pkg, '/lib/' ) ) {
 			pkg = pkg.substring( 0, pkg.indexOf( 'lib/' ) );
 		}
-		else if ( contains( pkg, 'include/' ) ) {
+		else if ( contains( pkg, '/include/' ) ) {
 			pkg = pkg.substring( 0, pkg.indexOf( 'include/' ) );
 		}
-		else if ( contains( pkg, 'src/' ) ) {
+		else if ( contains( pkg, '/src/' ) ) {
 			pkg = pkg.substring( 0, pkg.indexOf( 'src/' ) );
 		}
-		else if ( contains( pkg, 'test/' ) ) {
+		else if ( contains( pkg, '/test/' ) ) {
 			pkg = pkg.substring( 0, pkg.indexOf( 'test/' ) );
 		}
 		return pkg;
@@ -156,7 +156,7 @@ async function main() {
 		owner: context.repo.owner,
 		repo: context.repo.repo
 	});
-	core.info( JSON.stringify( response.data.files, null, '\t' ) );
+	core.debug( JSON.stringify( response.data.files, null, '\t' ) );
 	const files = response.data.files;
 	const packages = [];
 	for ( let i = 0; i < files.length; i++ ) {
