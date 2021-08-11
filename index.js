@@ -19,7 +19,7 @@
 // MODULES //
 
 const core = require( '@actions/core' );
-const { context, GitHub } = require( '@actions/github' );
+const { context } = require( '@actions/github' );
 
 
 // MAIN //
@@ -31,7 +31,7 @@ async function main() {
 	const token = core.getInput( 'GITHUB_TOKEN', { 
 		required: true 
 	});
-	const client = new GitHub( token );
+	const octokit = github.getOctokit( token );
 	let base, head;
 	switch ( context.eventName ) {
 	case 'push':
@@ -49,7 +49,7 @@ async function main() {
 	default:
 		core.setFailed( 'Unsupported event name: ' + eventName );
 	}
-	const response = await client.repos.compareCommits({
+	const response = await octokit.repos.compareCommits({
 		base,
 		head,
 		owner: context.repo.owner,

@@ -2,6 +2,11 @@ name: Changed Packages Action
 description: Return the list of changed stdlib packages in a push or pull request.
 author: Philipp Burckhardt <pburckhardt@outlook.com>
 
+inputs:
+  GITHUB_TOKEN:
+    description: Your GitHub token for authentication
+    required: true
+
 runs:
   using: node12
   main: index.js
