@@ -50,7 +50,8 @@ jobs:
       # Push changes to the standalone package repositories:
       - name: 'Push changes to standalone package repositories'
         run: |
-          echo ${{ steps.changed-packages.outputs.packages }}
+          echo "This is a space-separated printout of the output from the previous step:"   
+          echo ${{ join( fromJSON( steps.changed-packages.outputs.packages ), ' ' ) }}
 ```
 
 
