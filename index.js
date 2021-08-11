@@ -19,7 +19,7 @@
 // MODULES //
 
 const core = require( '@actions/core' );
-const { context } = require( '@actions/github' );
+const github, { context } = require( '@actions/github' );
 
 
 // MAIN //
