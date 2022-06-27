@@ -19,8 +19,8 @@
 // MODULES //
 
 import { dirname } from 'path';
-import core from '@actions/core';
-import github from '@actions/github';
+import { debug, getInput, setFailed, setOutput } from '@actions/core';
+import { context, getOctokit } from '@actions/github';
 import contains from '@stdlib/assert-contains';
 
 
@@ -140,13 +140,14 @@ function prunePackage( pkg: string, level: number ): string {
 
 /**
 * Main function.
+*
+* @returns {Promise<void>} promise indicating completion
 */ 
-async function main() {
-	const token = core.getInput( 'GITHUB_TOKEN', { 
+async function main(): Promise<void> {
+	const token = getInput( 'GITHUB_TOKEN', { 
 		required: true 
 	});
-	const context = github.context;
-	const octokit = github.getOctokit( token );
+	const octokit = getOctokit( token );
 	let base, head;
 	switch ( context.eventName ) {
 	case 'push':
@@ -162,7 +163,7 @@ async function main() {
 		break;
 	}
 	default:
-		core.setFailed( 'Unsupported event name: ' + context.eventName );
+		setFailed( 'Unsupported event name: ' + context.eventName );
 	}
 	const response = await octokit.rest.repos.compareCommits({
 		base,
@@ -170,7 +171,7 @@ async function main() {
 		owner: context.repo.owner,
 		repo: context.repo.repo
 	});
-	core.debug( JSON.stringify( response.data.files, null, '\t' ) );
+	debug( JSON.stringify( response.data.files, null, '\t' ) );
 	const files = response.data.files;
 	const packages = [];
 	for ( let i = 0; i < files.length; i++ ) {
@@ -188,7 +189,7 @@ async function main() {
 			}
 		}
 	}
-	core.setOutput( 'packages', packages );
+	setOutput( 'packages', packages );
 }
 
 main();

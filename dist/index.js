@@ -22,8 +22,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 // MODULES //
 const path_1 = require("path");
-const core_1 = __importDefault(require("@actions/core"));
-const github_1 = __importDefault(require("@actions/github"));
+const core_1 = require("@actions/core");
+const github_1 = require("@actions/github");
 const assert_contains_1 = __importDefault(require("@stdlib/assert-contains"));
 // VARIABLES //
 const RE_BENCHMARK = /\/benchmark($|\/)/i;
@@ -132,21 +132,22 @@ function prunePackage(pkg, level) {
 // MAIN //
 /**
 * Main function.
+*
+* @returns {Promise<void>} promise indicating completion
 */
 async function main() {
-    const token = core_1.default.getInput('GITHUB_TOKEN', {
+    const token = (0, core_1.getInput)('GITHUB_TOKEN', {
         required: true
     });
-    const context = github_1.default.context;
-    const octokit = github_1.default.getOctokit(token);
+    const octokit = (0, github_1.getOctokit)(token);
     let base, head;
-    switch (context.eventName) {
+    switch (github_1.context.eventName) {
         case 'push':
-            base = context.payload.before;
-            head = context.payload.after;
+            base = github_1.context.payload.before;
+            head = github_1.context.payload.after;
             break;
         case 'pull_request': {
-            const pullRequest = context.payload.pull_request;
+            const pullRequest = github_1.context.payload.pull_request;
             if (pullRequest) {
                 base = pullRequest.base.sha;
                 head = pullRequest.head.sha;
@@ -154,15 +155,15 @@ async function main() {
             break;
         }
         default:
-            core_1.default.setFailed('Unsupported event name: ' + context.eventName);
+            (0, core_1.setFailed)('Unsupported event name: ' + github_1.context.eventName);
     }
     const response = await octokit.rest.repos.compareCommits({
         base,
         head,
-        owner: context.repo.owner,
-        repo: context.repo.repo
+        owner: github_1.context.repo.owner,
+        repo: github_1.context.repo.repo
     });
-    core_1.default.debug(JSON.stringify(response.data.files, null, '\t'));
+    (0, core_1.debug)(JSON.stringify(response.data.files, null, '\t'));
     const files = response.data.files;
     const packages = [];
     for (let i = 0; i < files.length; i++) {
@@ -180,7 +181,7 @@ async function main() {
             }
         }
     }
-    core_1.default.setOutput('packages', packages);
+    (0, core_1.setOutput)('packages', packages);
 }
 main();
 //# sourceMappingURL=index.js.map
