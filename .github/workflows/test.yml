@@ -13,10 +13,7 @@ jobs:
 
     # Define the sequence of job steps...
     steps:
-      - uses: actions/checkout@v2
-      - name: Install dependencies
-        run: |
-          npm install
+      - uses: actions/checkout@v3
       - id: changed-packages
         uses: ./
         with:
