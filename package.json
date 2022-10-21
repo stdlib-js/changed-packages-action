@@ -1,6 +1,6 @@
 {
     "name": "changed-packages-action",
-    "version": "1.0.0",
+    "version": "2.0.0",
     "description": "A GitHub action to return the list of changed stdlib packages in a push or pull request.",
     "main": "dist/index.js",
     "scripts": {
@@ -8,7 +8,19 @@
         "lint": "eslint . --ext .ts",
         "prepare": "husky install"
     },
-    "keywords": [],
+    "keywords": [
+        "github",
+        "action",
+        "changed",
+        "packages",
+        "pkgs",
+        "stdlib-js",
+        "stdlib",
+        "push",
+        "pull-request",
+        "pull",
+        "request"
+    ],
     "author": {
         "name": "Philipp Burckhardt",
         "url": "pburckhardt@outlook.com"
