@@ -43,7 +43,7 @@ jobs:
       # Retrieve list of changed stdlib packages in a push or pull request:
       - name: 'Retrieve list of changed stdlib packages'
         id: 'changed-packages'
-        uses: stdlib-js/changed-packages-action@v1.0
+        uses: stdlib-js/changed-packages-action@v2
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
