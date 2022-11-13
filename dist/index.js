@@ -33,6 +33,7 @@ const RE_DOCS = /\/docs($|\/)/i;
 const RE_ETC = /\/etc($|\/)/i;
 const RE_EXAMPLES = /\/examples($|\/)/i;
 const RE_LIB = /\/lib($|\/)/i;
+const RE_SCRIPTS = /\/scripts($|\/)/i;
 const RE_INCLUDE = /\/include($|\/)/i;
 const RE_SRC = /\/src($|\/)/i;
 const RE_TEST = /\/test($|\/)/i;
@@ -52,6 +53,7 @@ const RE_TEST = /\/test($|\/)/i;
 *     -   `examples`
 *     -   `lib`
 *     -   `include`
+*     -   `scripts`
 *     -   `src`
 *     -   `test`
 *
@@ -83,6 +85,9 @@ function stripOffInternals(pkg) {
     }
     else if (RE_INCLUDE.test(pkg)) {
         pkg = pkg.substring(0, pkg.indexOf('/include'));
+    }
+    else if (RE_SCRIPTS.test(pkg)) {
+        pkg = pkg.substring(0, pkg.indexOf('/scripts'));
     }
     else if (RE_SRC.test(pkg)) {
         pkg = pkg.substring(0, pkg.indexOf('/src'));
