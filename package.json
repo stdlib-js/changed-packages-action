@@ -28,19 +28,20 @@
     },
     "license": "Apache-2.0",
     "dependencies": {
-        "@actions/core": "^1.10.1",
-        "@actions/github": "^6.0.0",
-        "@stdlib/assert-contains": "^0.2.0"
+        "@actions/core": "^1.11.1",
+        "@actions/github": "^6.0.1",
+        "@stdlib/assert-contains": "^0.2.2"
     },
     "devDependencies": {
-        "@types/node": "^20.11.17",
+        "@types/node": "^20.19.27",
+        "@types/tape": "^5.8.1",
         "@typescript-eslint/eslint-plugin": "^7.0.1",
         "@typescript-eslint/parser": "^7.0.1",
-        "eslint": "^8.56.0",
-        "husky": "^9.0.11",
+        "eslint": "^8.57.1",
+        "husky": "^9.1.7",
         "tap-spec": "^5.0.0",
         "tape": "git+https://github.com/kgryte/tape.git#fix/globby",
-        "tsx": "^4.7.0",
-        "typescript": "^5.3.3"
+        "tsx": "^4.21.0",
+        "typescript": "^5.9.3"
     }
 }
