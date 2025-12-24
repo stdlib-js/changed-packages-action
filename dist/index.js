@@ -26,6 +26,8 @@ const core_1 = require("@actions/core");
 const github_1 = require("@actions/github");
 const assert_contains_1 = __importDefault(require("@stdlib/assert-contains"));
 const utils_1 = require("./utils");
+// VARIABLES //
+const NULL_SHA = '0000000000000000000000000000000000000000';
 // MAIN //
 /**
 * Main function.
@@ -53,6 +55,12 @@ async function main() {
         }
         default:
             (0, core_1.setFailed)('Unsupported event name: ' + github_1.context.eventName);
+    }
+    // Handle initial push where there is no previous commit (null SHA):
+    if (base === NULL_SHA) {
+        (0, core_1.debug)('Initial push detected (null SHA). Returning empty packages list.');
+        (0, core_1.setOutput)('packages', []);
+        return;
     }
     const response = await octokit.rest.repos.compareCommits({
         base,

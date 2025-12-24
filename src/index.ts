@@ -25,6 +25,11 @@ import contains from '@stdlib/assert-contains';
 import { stripOffInternals, prunePackage } from './utils';
 
 
+// VARIABLES //
+
+const NULL_SHA = '0000000000000000000000000000000000000000';
+
+
 // MAIN //
 
 /**
@@ -54,6 +59,14 @@ async function main(): Promise<void> {
 	default:
 		setFailed( 'Unsupported event name: ' + context.eventName );
 	}
+
+	// Handle initial push where there is no previous commit (null SHA):
+	if ( base === NULL_SHA ) {
+		debug( 'Initial push detected (null SHA). Returning empty packages list.' );
+		setOutput( 'packages', [] );
+		return;
+	}
+
 	const response = await octokit.rest.repos.compareCommits({
 		base,
 		head,
