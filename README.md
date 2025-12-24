@@ -43,7 +43,7 @@ jobs:
       # Retrieve list of changed stdlib packages in a push or pull request:
       - name: 'Retrieve list of changed stdlib packages'
         id: 'changed-packages'
-        uses: stdlib-js/changed-packages-action@v2
+        uses: stdlib-js/changed-packages-action@v3
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -72,7 +72,7 @@ See [LICENSE][stdlib-license].
 
 ## Copyright
 
-Copyright &copy; 2021-2024. The Stdlib [Authors][stdlib-authors].
+Copyright &copy; 2021-2025. The Stdlib [Authors][stdlib-authors].
 
 <!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
 
@@ -82,7 +82,7 @@ Copyright &copy; 2021-2024. The Stdlib [Authors][stdlib-authors].
 
 [stdlib-authors]: https://github.com/stdlib-js/stdlib/graphs/contributors
 
-[stdlib-license]: https://raw.githubusercontent.com/stdlib-js/assign-issue-on-label-action/master/LICENSE
+[stdlib-license]: https://raw.githubusercontent.com/stdlib-js/changed-packages-action/master/LICENSE
 
 </section>
 

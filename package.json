@@ -23,7 +23,7 @@
     ],
     "author": {
         "name": "Philipp Burckhardt",
-        "url": "pburckhardt@outlook.com"
+        "email": "pburckhardt@outlook.com"
     },
     "license": "Apache-2.0",
     "dependencies": {

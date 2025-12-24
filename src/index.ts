@@ -177,7 +177,7 @@ async function main(): Promise<void> {
 		repo: context.repo.repo
 	});
 	debug( JSON.stringify( response.data.files, null, '\t' ) );
-	const files = response.data.files;
+	const files = response.data.files ?? [];
 	const packages = [];
 	for ( let i = 0; i < files.length; i++ ) {
 		const { filename } = files[ i ];

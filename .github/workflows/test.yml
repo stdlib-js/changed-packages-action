@@ -13,7 +13,7 @@ jobs:
 
     # Define the sequence of job steps...
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - id: changed-packages
         uses: ./
         with:
